@@ -32,13 +32,16 @@ void matrix::matrix_output(double arr[30][30], int a = 0, int b = 0) {
 
 void matrix::scalar_input() { //Prompts for scalar, passes it to scalar_multiple and then to the output function
 	double multiple = 0;
+	
 	cout << "Multiply the matrix by what number?" << endl;
 	cin >> multiple;
+	
 	scalar_multiple(multiple);
+	
 	cout << endl << "The resultant matrix is: " << endl << endl;
+	
 	matrix_output(matrix_array);
 }
-
 
 void matrix::scalar_multiple(double multiple) { //Base function for scalar multiplication
 	for (int i = 0; i < m; ++i) {
@@ -48,12 +51,11 @@ void matrix::scalar_multiple(double multiple) { //Base function for scalar multi
 	}
 }
 
-
-
-
 void matrix::matrix_involutory() { //Checks for the matrix being involutory
 	int count = 0;
+	
 	matrix_multiply(*this);
+	
 	for (int i = 0; i < m; ++i) {
 		for (int j = 0; j < n; ++j) {
 			if (matrix_product[i][j] == 0 && i != j) { //I found it easier to just simply compare diagonal and nondiagonal elements instead of generating an nxn identity matrix
@@ -70,9 +72,7 @@ void matrix::matrix_involutory() { //Checks for the matrix being involutory
 	else {
 		cout << "Non-involutory matrix." << endl;
 	}
-
 }
-
 
 void matrix::matrix_idempotent() { //checks for idempotency
 	int count = 0;
@@ -94,13 +94,9 @@ void matrix::matrix_idempotent() { //checks for idempotency
 	}
 }
 
-
 double matrix::det2x2(int a, int b, int c, int d, int e, int f, int g, int h) { //Simplifies determinant and inverse calculations by lessening the amount I have to type
 	return (matrix_array[a][b] * matrix_array[g][h] - matrix_array[c][d] * matrix_array[e][f]);
 }
-
-
-
 
 void matrix::matrix_loader() {	 //Simple matrix loader
 	cout << "What are the dimensions of your matrix?" << endl;
@@ -116,10 +112,9 @@ void matrix::matrix_loader() {	 //Simple matrix loader
 		}
 	}
 	cout << "Your matrix is:" << endl;
+	
 	matrix_output(matrix_array);
-
 }
-
 
 void matrix::inverse_output() {
 	if (m != n) {
@@ -146,15 +141,10 @@ void matrix::inverse_output() {
 		cout << "Error: Inverse calculator allows up to 3x3 matrices." << endl;
 		return;
 	}
-
 	if (determinant == 0) {
 		cout << "Error: Singular matrix." << endl;
 	}
 }
-
-
-
-
 
 void matrix::matrix_inverse() { //Works
 	if (m != n) {
@@ -197,28 +187,23 @@ void matrix::matrix_inverse() { //Works
 	if (determinant == 0) {
 		cout << "Error: Singular matrix." << endl;  //Checks for singularity
 	}
-
 }
+
 void matrix::transpose_output() { // Outputs transpose
 	cout << "The transpose of your matrix is: " << endl << endl;
 	matrix_transpose();
 	matrix_output(matrix_trans,1,1);
-
 }
 
-
 void matrix::matrix_transpose() { //inner transpose array
-
 	for (int i = 0; i < n; ++i) {
 		for (int j = 0; j < m; ++j) {
 			matrix_trans[i][j] = matrix_array[j][i];
 		}
 	}
-
 }
 
 void matrix::matrix_adder(matrix object) { //Sums input arrays
-
 	for (int i = 0; i < m; ++i) {
 		for (int j = 0; j < n; ++j) {
 			cout << matrix_array[i][j] + object.matrix_array[i][j] << " ";
@@ -226,8 +211,6 @@ void matrix::matrix_adder(matrix object) { //Sums input arrays
 		cout << endl;
 	}
 }
-
-
 
 void matrix::matrix_ortho() { // Checks orthogonality
 	int count = 0;
@@ -275,13 +258,11 @@ void matrix::matrix_determinant() {
 			determinant = det2x2(0, 0, 0, 1, 1, 0, 1, 1);
 			cout << determinant << endl;
 		}
-
 		if (m == 3) {
 			determinant = matrix_array[0][0] * det2x2(1, 1, 1, 2, 2, 1, 2, 2) - matrix_array[0][1] * det2x2(1, 0, 1, 2, 2, 0, 2, 2) + matrix_array[0][2] * det2x2(1, 0, 1, 1, 2, 0, 2, 1);
 			cout << "The determinant of your matrix is: ";
 			cout << determinant << endl;
 		}
-
 		if (m > 4) {
 			cout << "Error: Determinant calculator allows up to 3x3 matrices." << endl;
 		}
@@ -310,7 +291,6 @@ void matrix::matrix_multiply(matrix object) { //inner multiplication function
 			matrix_product[i][j] = 0; //initializes the product matrix
 		}
 	}
-
 	if (n == object.m) { //checks for matrix multiplication conditional 
 		for (int i = 0; i < m; ++i) {
 			for (int j = 0; j < object.n; ++j) {

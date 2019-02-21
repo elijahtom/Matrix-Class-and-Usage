@@ -1,25 +1,10 @@
-#include < iostream > #include < cmath >
+#include <iostream> 
+#include <cmath>
+#include "MATRIXCLASS.h"
 using namespace std;
 
-#include "MATRIXCLASS.h"
 
-void matrix::matrix_loader() { //Simple matrix loader
-	cout << "What are the dimensions of your matrix?" << endl;
-	cout << "M:";
-	cin >> m;
-	cout << "N:";
-	cin >> n;
 
-	for (int i = 0; i < m; ++i) {
-		for (int j = 0; j < n; ++j) {
-			cout << "Value " << (i * n + j + 1) << ":";
-			cin >> matrix_array[i][j];
-		}
-	}
-	cout << "Your matrix is:" << endl;
-
-	matrix_output(matrix_array);
-}
 
 void matrix::matrix_output(double arr[30][30], int a = 0, int b = 0) {
 
@@ -45,6 +30,24 @@ void matrix::matrix_output(double arr[30][30], int a = 0, int b = 0) {
 		cout << endl;
 	}
 	cout << endl << endl; //formatting
+}
+
+void matrix::matrix_loader() { //Simple matrix loader
+	cout << "What are the dimensions of your matrix?" << endl;
+	cout << "M:";
+	cin >> m;
+	cout << "N:";
+	cin >> n;
+
+	for (int i = 0; i < m; ++i) {
+		for (int j = 0; j < n; ++j) {
+			cout << "Value " << (i * n + j + 1) << ":";
+			cin >> matrix_array[i][j];
+		}
+	}
+	cout << "Your matrix is:" << endl;
+
+	matrix_output(matrix_array);
 }
 
 void matrix::sum_output(matrix object, int a) {
@@ -253,7 +256,6 @@ void matrix::matrix_ortho() { // Checks orthogonality
 			}
 		}
 	}
-	cout << count << endl;
 
 	if (count == m * n) {
 		cout << "This matrix is orthogonal." << endl;
